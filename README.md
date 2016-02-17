@@ -36,11 +36,14 @@ The above being said, we had an application that could not afford to miss events
 
 3) The variables pointing to objects that are being observed must be re-assigned to point to a proxy returned by the call to Object.observe, e.g.
 
+```
 var object = { foo: null };
-object = Object.observe(object,function(changeset) { console.log(changeset));
+object = Object.observe(object,function(changeset) { 
+             console.log(changeset);
+         });
 object.foo = "bar";
-
-will result in {foo: "bar"} being printed to the console
+```
+will result in `{foo: "bar"}` being printed to the console
 
 Item one above can be re-mediated over time.
 
@@ -54,9 +57,9 @@ Anyway, now you have a choice MaxArt2501, Joel Griffith or AnyWhichWay, and choi
 
 Array.observe does not behave well in Chrome. It is the native implementation that does not behave well. We are looking to patch this in the future. Unit tests pass in Firefox, which uses our observe implementation.
 
-You can observe for ["add", "update", "delete", "reconfigure", "setPrototype","preventExtensions"] using Object.observe.
+You can observe for [`"add"`, `"update"`, `"delete"`, `"reconfigure"`, `"setPrototype"`,`"preventExtensions"`] using Object.observe.
 
-You can observe for ["add", "update", "delete", "splice"] using Array.observe.
+You can observe for [`"add"`, `"update"`, `"delete"`, `"splice"`] using Array.observe.
 
 Array.unobserve is not yet implemented.
 
